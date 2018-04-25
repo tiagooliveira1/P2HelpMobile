@@ -1,8 +1,8 @@
 package com.example.troli.p2help.Adapter;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
+//import android.support.annotation.LayoutRes;
+//import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +25,17 @@ public class SistemaAdapter extends ArrayAdapter<Sistema> {
     private int resource;
     private List<Sistema> sistemas;
 
-    public SistemaAdapter(Context context, @LayoutRes int resource, List<Sistema> objects) {
+    public SistemaAdapter(Context context,  int resource, List<Sistema> objects) {
         super(context, resource, objects);
         this.resource = resource;
         sistemas = objects;
     }
-
+    /*public SistemaAdapter(Context context, @LayoutRes int resource, List<Sistema> objects) {
+        super(context, resource, objects);
+        this.resource = resource;
+        sistemas = objects;
+    }
+*/
     @Override
     public View getView(int position, View currentView, ViewGroup parent){
         View mView = currentView;
