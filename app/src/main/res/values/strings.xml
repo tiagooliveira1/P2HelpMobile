@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">P2Help</string>
+    <string name="title_activity_cadastrar_sistema">CadastrarSistemaActivity</string>
+    <string name="title_activity_listagem">ListagemActivity</string>
+</resources>
