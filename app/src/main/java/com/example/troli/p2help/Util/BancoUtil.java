@@ -8,5 +8,10 @@ public class BancoUtil {
     public static final String NOME_SISTEMA = "nome";
     public static final String VERSAO_SISTEMA = "versao";
 
-    public static final int VERSAO = 1;
+    /* constantes para a tabela de oferta */
+    public static final String TABELA_OFERTA = "sistema";
+    public static final String ID_OFERTA = "_id";
+    public static final String SISTEMA = "sistema";
+
+    public static final int VERSAO = 2;
 }

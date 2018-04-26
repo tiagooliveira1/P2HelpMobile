@@ -21,7 +21,9 @@
             android:label="@string/title_activity_cadastrar_sistema" />
         <activity
             android:name=".Activity.ListagemActivity"
-            android:label="@string/title_activity_listagem"></activity>
+            android:label="@string/title_activity_listagem" />
+        <activity android:name=".Activity.AtualizarSistemaActivity" />
+        <activity android:name=".Activity.OfertarCursoActivity"></activity>
     </application>
 
 </manifest>

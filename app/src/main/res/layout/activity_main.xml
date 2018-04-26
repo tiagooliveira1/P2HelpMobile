@@ -24,4 +24,20 @@
         android:text="Listagem de sistemas"
         />
 
+    <Button
+        android:id="@+id/btnEncontrarPrestador"
+        android:onClick="acessaListagemSistemas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Encontrar Prestador"
+        />
+
+    <Button
+        android:id="@+id/btnOfertarHoras"
+        android:onClick="acessarOfertarCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ofertar Minhas Horas"
+        />
+
 </LinearLayout>

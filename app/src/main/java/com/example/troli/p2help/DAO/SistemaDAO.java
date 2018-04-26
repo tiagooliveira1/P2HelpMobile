@@ -23,9 +23,12 @@ public class SistemaDAO {
     private SQLiteDatabase db;
     private DatabaseFactory banco;
 
+    public static final int SISTEMAS_TOTAL = 1;
 
     public SistemaDAO(Context context) {
         banco = new DatabaseFactory(context);
+
+        //banco.onUpgrade(banco.getWritableDatabase(), 4, 6);
     }
 
     public long insereDado(Sistema sistema) {

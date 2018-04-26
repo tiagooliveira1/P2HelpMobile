@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.troli.p2help.Activity.CadastrarSistemaActivity;
 import com.example.troli.p2help.Activity.ListagemActivity;
+import com.example.troli.p2help.Activity.OfertarCursoActivity;
 import com.facebook.stetho.Stetho;
 
 public class MainActivity extends Activity {
@@ -25,6 +26,11 @@ public class MainActivity extends Activity {
 
     public void acessaListagemSistemas(View v){
         Intent intent = new Intent(MainActivity.this,ListagemActivity.class);
+        startActivity(intent);
+    }
+
+    public void acessarOfertarCurso(View v) {
+        Intent intent = new Intent(MainActivity.this,OfertarCursoActivity.class);
         startActivity(intent);
     }
 }

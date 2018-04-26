@@ -16,10 +16,6 @@ import java.util.List;
 
 
 
-/**
- * Created by Diego on 13/09/2017.
- */
-
 public class SistemaAdapter extends ArrayAdapter<Sistema> {
 
     private int resource;
@@ -30,7 +26,7 @@ public class SistemaAdapter extends ArrayAdapter<Sistema> {
         this.resource = resource;
         sistemas = objects;
     }
-    /*public SistemaAdapter(Context context, @LayoutRes int resource, List<Sistema> objects) {
+  /*  public SistemaAdapter(Context context, @LayoutRes int resource, List<Sistema> objects) {
         super(context, resource, objects);
         this.resource = resource;
         sistemas = objects;
