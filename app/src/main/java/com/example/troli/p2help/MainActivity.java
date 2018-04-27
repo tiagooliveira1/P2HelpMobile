@@ -8,6 +8,8 @@ import android.view.View;
 import com.example.troli.p2help.Activity.CadastrarSistemaActivity;
 import com.example.troli.p2help.Activity.ListagemActivity;
 import com.example.troli.p2help.Activity.OfertarCursoActivity;
+//import com.example.troli.p2help.DAO.ConfigGeralDAO;
+//import com.example.troli.p2help.Util.BancoUtil;
 import com.facebook.stetho.Stetho;
 
 public class MainActivity extends Activity {
@@ -17,6 +19,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Stetho.initializeWithDefaults(this);
+
+        // verifica o banco de dados
+        //ConfigGeralDAO configGeralDAO = new ConfigGeralDAO(this);
+        //configGeralDAO.checkVersion(BancoUtil.VERSAO);
     }
 
     public void cadastrarSistema(View v){

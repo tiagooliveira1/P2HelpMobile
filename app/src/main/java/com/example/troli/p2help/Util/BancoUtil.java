@@ -14,4 +14,5 @@ public class BancoUtil {
     public static final String SISTEMA = "sistema";
 
     public static final int VERSAO = 2;
+
 }
