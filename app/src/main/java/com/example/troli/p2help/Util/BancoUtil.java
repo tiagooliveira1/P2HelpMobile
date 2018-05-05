@@ -13,6 +13,11 @@ public class BancoUtil {
     public static final String ID_OFERTA = "_id";
     public static final String SISTEMA = "sistema";
 
+    public static final String TABELA_USUARIO = "usuario";
+    public static final String ID_USUARIO = "_id";
+    public static final String LOGIN_USUARIO = "login";
+    public static final String SENHA_USUARIO = "senha";
+
     public static final int VERSAO = 2;
 
 }

@@ -1,7 +1,11 @@
 package com.example.troli.p2help.DAO;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
+@Entity
 public class Sistema {
+    @PrimaryKey(autoGenerate = true)
     private int ID;
     private String nome;
     private String versao;

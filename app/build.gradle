@@ -15,6 +15,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        customDebugType {
+            //debuggable true
+        }
     }
 }
 
@@ -22,9 +25,18 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //compile 'com.intellij:annotations:+@jar'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    //implementation 'com.android.support:support-annotations:26.1.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation ('com.android.support.test:runner:1.0.2') {
+        exclude group:'com.android.support', module:'support-annotations'
+    }
+    androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.2') {
+        exclude group:'com.android.support', module:'support-annotations'
+    }
     compile 'com.facebook.stetho:stetho:1.5.0'
+
+    // Room (use 1.1.0-rc1 for latest version)
+    implementation "android.arch.persistence.room:runtime:1.0.0" /* para rodar  room*/
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0" /* para rodar  room*/
 
 }

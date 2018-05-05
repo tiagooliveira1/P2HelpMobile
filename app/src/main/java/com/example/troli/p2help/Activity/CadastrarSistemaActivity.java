@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.troli.p2help.DAO.AppDatabase;
 import com.example.troli.p2help.DAO.Sistema;
 import com.example.troli.p2help.DAO.SistemaDAO;
 import com.example.troli.p2help.MainActivity;
@@ -26,7 +27,25 @@ public class CadastrarSistemaActivity extends Activity {
     }
 
     public void salvarSistema(View v){
-        SistemaDAO sistemaDAO = new SistemaDAO(this);
+        final AppDatabase app = AppDatabase.getDatabase(this);
+        SistemaDAO sistemaDAO = app.sistemaDAO();
+
+        Sistema sistema = new Sistema();
+        sistema.setNome(editNomeSistema.getText().toString());
+        sistema.setVersao(editVersaoSistema.getText().toString());
+
+        long resultado = sistemaDAO.inserir(sistema);
+
+        if(resultado > 0){
+            exibirMensagem("Cadastro realizado com sucesso!");
+            Intent listarSistemas = new Intent(CadastrarSistemaActivity.this,MainActivity.class);
+            startActivity(listarSistemas);
+            finish();
+        }
+        else{
+            exibirMensagem("Erro ao cadastrar o item.");
+        }
+        /*SistemaDAO sistemaDAO = new SistemaDAO(this);
         Sistema sistema = new Sistema();
         sistema.setNome(editNomeSistema.getText().toString());
         sistema.setVersao(editVersaoSistema.getText().toString());
@@ -41,7 +60,7 @@ public class CadastrarSistemaActivity extends Activity {
         }
         else{
             exibirMensagem("Erro ao cadastrar o item.");
-        }
+        } */
     }
 
     private void exibirMensagem(String mensagem){

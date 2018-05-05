@@ -32,6 +32,13 @@ public class DatabaseFactory extends SQLiteOpenHelper {
         // insere o primeiro registro da configuracao
 
 
+        /*  cria a tabela de usuarios */
+        sql = "CREATE TABLE "+ BancoUtil.TABELA_USUARIO+"("
+                + BancoUtil.ID_USUARIO+ " integer primary key autoincrement,"
+                + BancoUtil.LOGIN_USUARIO + " text,"
+                + BancoUtil.SENHA_USUARIO + " text"
+                +")";
+        db.execSQL(sql);
         // cria a tabela sistema
         sql = "CREATE TABLE "+ BancoUtil.TABELA_SISTEMA+"("
                 + BancoUtil.ID_SISTEMA+ " integer primary key autoincrement,"

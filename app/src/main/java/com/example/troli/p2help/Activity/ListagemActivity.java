@@ -1,6 +1,8 @@
 package com.example.troli.p2help.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.troli.p2help.Adapter.SistemaAdapter;
+import com.example.troli.p2help.DAO.AppDatabase;
 import com.example.troli.p2help.DAO.Sistema;
 import com.example.troli.p2help.DAO.SistemaDAO;
 import com.example.troli.p2help.MainActivity;
@@ -29,9 +32,13 @@ public class ListagemActivity extends Activity {
     }
 
     public void carregarElementos(){
+        AppDatabase app = AppDatabase.getDatabase(this);
+
         listaSistemas = (ListView) findViewById(R.id.listSistemas);
-        sistemaDAO = new SistemaDAO(this);
-        List<Sistema> sistemas = sistemaDAO.carregaDadosLista();
+        sistemaDAO = app.sistemaDAO();
+
+        List<Sistema> sistemas = sistemaDAO.findAll();
+
         myAdapter = new SistemaAdapter(this,R.layout.item_sistema,sistemas);
         listaSistemas.setAdapter(myAdapter);
         listaSistemas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -45,4 +52,7 @@ public class ListagemActivity extends Activity {
         });
     }
 
+
+
 }
+

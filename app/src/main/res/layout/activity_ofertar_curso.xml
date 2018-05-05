@@ -28,6 +28,28 @@
         android:hint="Versão"
         />
 
+    <TextView
+        android:id="@+id/txtEscolhaSistema"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Escolha o sistema"
+        />
+
+    <AutoCompleteTextView
+        android:id="@+id/acTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Digite alguma coisa"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
+
+    <ListView
+        android:id="@+id/listSistemas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
 
 
 </LinearLayout>
