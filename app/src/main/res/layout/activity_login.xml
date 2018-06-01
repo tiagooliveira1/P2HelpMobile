@@ -21,20 +21,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Informe seu usuário"/>
             <EditText
                 android:id="@+id/editLoginUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
+                android:hint="Usuário"
                 android:imeActionId="6"
-                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeActionLabel="Usuário"
                 android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/editPassword"
+                android:id="@+id/editLoginSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Senha"
@@ -49,8 +52,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                android:text="Entrar"
+                android:textStyle="bold"
+                android:onClick="logarUsuario"
+                />
+
+            <Button
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Quero me cadastrar"
+                android:textStyle="bold"
+                android:onClick="abrirNovoUsuario"
+                />
 
         </LinearLayout>
     </ScrollView>

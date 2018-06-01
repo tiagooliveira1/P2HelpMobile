@@ -18,7 +18,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Stetho.initializeWithDefaults(this);
+
+        //Stetho.initializeWithDefaults(this);
 
         // verifica o banco de dados
         //ConfigGeralDAO configGeralDAO = new ConfigGeralDAO(this);

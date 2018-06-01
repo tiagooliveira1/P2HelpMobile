@@ -30,12 +30,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.troli.p2help.DAO.AppDatabase;
+import com.example.troli.p2help.DAO.Sistema;
+import com.example.troli.p2help.DAO.Usuario;
 import com.example.troli.p2help.DAO.UsuarioDAO;
 import com.example.troli.p2help.MainActivity;
 import com.example.troli.p2help.R;
 import com.example.troli.p2help.Util.Util;
+import com.facebook.stetho.Stetho;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.example.troli.p2help.Util.MySingleton;
 
 
 /**
@@ -52,30 +71,100 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         editLogin = (EditText) findViewById(R.id.editLoginUsuario);
-        editSenha = (EditText) findViewById(R.id.editPassword);
+        editSenha = (EditText) findViewById(R.id.editLoginSenha);
+
+        Stetho.initializeWithDefaults(this);
     }
 
-    public void logarUsuario(View v){
+    public void logarUsuario(View v) {
         String login = editLogin.getText().toString();
         String senha = editSenha.getText().toString();
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO(this);
-        long idUsuario = usuarioDAO.validaUsuario(login, Util.toMD5(senha));
-        if(idUsuario > 0){
-            Toast.makeText(this, "Usuário Logado com Sucesso!", Toast.LENGTH_SHORT).show();
+        AppDatabase app = AppDatabase.getDatabase(this);
+        Usuario usuario;
+        usuario = app.usuarioDAO().findByLoginAndPassword(login, senha);
+
+        if (usuario == null) {
+            exibirMensagem("Usuário ou senha inválidos.");
+        } else {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.putExtra("ID_USUARIO",idUsuario);
+            pegarToken();
             startActivity(intent);
-            finish();
+
         }
-        else{
-            Toast.makeText(this, "Usuário não Cadastrado.", Toast.LENGTH_SHORT).show();
-        }
+
     }
 
-    public void registrarUsuario(View v){
-        Intent intent = new Intent(LoginActivity.this,RegistroUsuarioActivity.class);
+
+    public void pegarToken() {
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://192.168.25.12:57598/api/Token";
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("Login", "1");
+            jsonBody.put("Pass", "1");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // Request a string response from the provided URL.
+
+        JsonObjectRequest jsonObjectRequest  = new JsonObjectRequest
+                (Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            exibirMensagem(response.getString("token"));
+                        } catch (JSONException e) {
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+                        exibirMensagem("Erro" + error.toString());
+                    }
+                }) {
+        };
+        // Add the request to the RequestQueue.
+
+        queue.add(jsonObjectRequest);
+
+    }
+
+    public void abrirNovoUsuario(View v) {
+        Intent intent = new Intent(LoginActivity.this, NovoUsuarioActivity.class);
         startActivity(intent);
+    }
+
+    public void registrarUsuario(View v) {
+        Intent intent = new Intent(LoginActivity.this, RegistroUsuarioActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void getJson(View v) {
+
+    }
+
+    public String generateJSONAuth(String usuario, String senha) {
+        JSONObject jo = new JSONObject();
+        try {
+            jo.put("Login", usuario);
+            jo.put("Pass", senha);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jo.toString();
+    }
+
+    private void exibirMensagem(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
     }
 
 }
