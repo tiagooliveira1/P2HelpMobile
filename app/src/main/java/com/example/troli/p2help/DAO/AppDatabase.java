@@ -8,11 +8,19 @@ import android.content.Context;
 /**
  * Created by troli on 02/05/2018.
  */
-@Database(entities = {Sistema.class, Usuario.class}, version =13 )
+@Database(entities = {
+        Sistema.class,
+        Usuario.class,
+        Categoria.class,
+        SistemaVersao.class,
+        Oferta.class,
+        Agenda.class
+}, version =15 )
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract SistemaDAO sistemaDAO();
     public abstract UsuarioDAO usuarioDAO();
+    public abstract CategoriaDAO categoriaDAO();
 
     private static AppDatabase INSTANCE;
 
@@ -20,6 +28,7 @@ public abstract class AppDatabase extends RoomDatabase {
         if(INSTANCE == null)
             INSTANCE = Room.databaseBuilder(context, AppDatabase.class, "p2db")
                     .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
                     .build();
             //INSTANCE = Room.databaseBuilder(context, AppDatabase.class, "p2db").fallbackToDestructiveMigration().build();
             //INSTANCE = Room.databaseBuilder(context, AppDatabase.class, "p2db").build();

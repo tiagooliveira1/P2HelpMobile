@@ -49,10 +49,14 @@ public class NovoUsuarioActivity extends Activity {
                 startActivity(atualizarIntent);
             }
         }
+    }
 
-
-
-
+    /**
+     * Sincroniza o usuário cadastrado com o servidor web
+     * @param usuario
+     */
+    public void syncUsuario(Usuario usuario)
+    {
 
     }
 

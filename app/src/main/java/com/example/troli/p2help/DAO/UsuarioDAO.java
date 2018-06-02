@@ -41,4 +41,6 @@ public interface UsuarioDAO {
     @Update
     public int editar(Usuario usuario);
 
+
+
 }

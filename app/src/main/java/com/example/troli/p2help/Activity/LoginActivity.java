@@ -3,6 +3,7 @@ package com.example.troli.p2help.Activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 
@@ -88,7 +89,7 @@ public class LoginActivity extends Activity {
             exibirMensagem("Usuário ou senha inválidos.");
         } else {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            pegarToken();
+            getTokenAuth();
             startActivity(intent);
 
         }
@@ -96,7 +97,10 @@ public class LoginActivity extends Activity {
     }
 
 
-    public void pegarToken() {
+    /**
+     * Pega um token válido da API e armazena no objeto
+     */
+    public void getTokenAuth() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://192.168.25.12:57598/api/Token";
@@ -117,10 +121,14 @@ public class LoginActivity extends Activity {
                     public void onResponse(JSONObject response) {
                         try {
                             exibirMensagem(response.getString("token"));
+                            // grava o token em Shared Preferences
+                            SharedPreferences settings = getSharedPreferences("P2_Prefs", 0);
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putString("tokenSessao", response.getString("token"));
+
                         } catch (JSONException e) {
 
                         }
-
                     }
                 }, new Response.ErrorListener() {
 
@@ -147,21 +155,6 @@ public class LoginActivity extends Activity {
         startActivity(intent);
     }
 
-
-    public void getJson(View v) {
-
-    }
-
-    public String generateJSONAuth(String usuario, String senha) {
-        JSONObject jo = new JSONObject();
-        try {
-            jo.put("Login", usuario);
-            jo.put("Pass", senha);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return jo.toString();
-    }
 
     private void exibirMensagem(String mensagem) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
