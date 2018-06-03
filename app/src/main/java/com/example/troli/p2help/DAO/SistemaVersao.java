@@ -3,11 +3,13 @@ package com.example.troli.p2help.DAO;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import javax.annotation.Nonnull;
+
 @Entity
 public class SistemaVersao {
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     private int ID;
-    @PrimaryKey(autoGenerate = false)
+
     private String versao;
 
     public SistemaVersao() {

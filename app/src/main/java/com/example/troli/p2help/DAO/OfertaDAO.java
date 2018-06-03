@@ -18,7 +18,7 @@ public interface OfertaDAO {
     @Insert
     public long inserir(Oferta sistema);
 
-    @Query("SELECT * from Sistema")
+    @Query("SELECT * from Oferta")
     public List<Oferta> findAll();
 
     @Query("SELECT * FROM Oferta where ID == :id")

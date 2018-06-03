@@ -125,6 +125,7 @@ public class LoginActivity extends Activity {
                             SharedPreferences settings = getSharedPreferences("P2_Prefs", 0);
                             SharedPreferences.Editor editor = settings.edit();
                             editor.putString("tokenSessao", response.getString("token"));
+                            editor.commit();
 
                         } catch (JSONException e) {
 
@@ -144,6 +145,7 @@ public class LoginActivity extends Activity {
         queue.add(jsonObjectRequest);
 
     }
+
 
     public void abrirNovoUsuario(View v) {
         Intent intent = new Intent(LoginActivity.this, NovoUsuarioActivity.class);
