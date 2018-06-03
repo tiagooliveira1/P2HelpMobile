@@ -40,16 +40,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dialog = new ProgressDialog(this);
-        dialog.setTitle("Realizando o carregamento dos dados");
-        dialog.setMessage("Aguarde o fim da requisição...");
+        dialog.setTitle("Carregando informações do serviço P2Help");
+        dialog.setMessage("Aguarde o fim da comunicação ...");
         dialog.show();
         getCategoriasAPI();
 
-        //Stetho.initializeWithDefaults(this);
-
-        // verifica o banco de dados
-        //ConfigGeralDAO configGeralDAO = new ConfigGeralDAO(this);
-        //configGeralDAO.checkVersion(BancoUtil.VERSAO);
     }
 
     public void cadastrarSistema(View v){
@@ -80,20 +75,16 @@ public class MainActivity extends Activity {
 
                     @Override
                     public void onResponse(JSONArray response) {
-                        exibirMensagem(response.toString());
                         JSONObject obj;
-
                         for (int i = 0; i < response.length(); i++) {
                             try {
                                 obj = response.getJSONObject(i);
                                 checkCategorias(obj);
-                                exibirMensagem(obj.getString("descricao"));
+                                exibirMensagem("Processando categoria " + obj.getString("descricao"));
                             } catch (JSONException e) {
 
                             }
-
                         }
-
                         dialog.dismiss();
                     }
                 }, new Response.ErrorListener() {

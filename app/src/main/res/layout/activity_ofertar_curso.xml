@@ -14,6 +14,40 @@
         android:text="Oferte suas horas disponíveis"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Informe a categoria de seu anúncio"
+        />
+    <Spinner
+        android:id="@+id/spinnerTipoOfertaCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editAnuncioTitulo"
+        android:hint="Título do seu anúncio"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editAnuncioDescricao"
+        android:hint="Descreva seu anúncio"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editAnuncioValorHora"
+        android:hint="Valor por hora"
+        android:inputType="numberDecimal"
+        />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,6 +83,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
+
 
 
 

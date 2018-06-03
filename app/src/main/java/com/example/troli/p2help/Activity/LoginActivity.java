@@ -83,7 +83,7 @@ public class LoginActivity extends Activity {
 
         AppDatabase app = AppDatabase.getDatabase(this);
         Usuario usuario;
-        usuario = app.usuarioDAO().findByLoginAndPassword(login, senha);
+        usuario = app.usuarioDAO().findByLoginAndPassword(login.trim(), senha);
 
         if (usuario == null) {
             exibirMensagem("Usuário ou senha inválidos.");
@@ -120,7 +120,7 @@ public class LoginActivity extends Activity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            exibirMensagem(response.getString("token"));
+                            //exibirMensagem(response.getString("token"));
                             // grava o token em Shared Preferences
                             SharedPreferences settings = getSharedPreferences("P2_Prefs", 0);
                             SharedPreferences.Editor editor = settings.edit();

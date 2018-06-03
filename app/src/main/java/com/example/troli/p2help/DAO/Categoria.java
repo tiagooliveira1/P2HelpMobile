@@ -48,4 +48,11 @@ public class Categoria {
     public void setCategoria_mae(int categoria_mae) {
         this.categoria_mae = categoria_mae;
     }
+
+    /* Tive que sobrescrever o método toString para que no spinner apareça somente o nome
+    * da categoria, e não o objeto .toString() */
+    @Override
+    public String toString() {
+        return descricao;
+    }
 }
