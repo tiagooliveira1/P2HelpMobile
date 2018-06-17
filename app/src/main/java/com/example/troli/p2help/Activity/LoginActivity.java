@@ -49,6 +49,7 @@ import com.example.troli.p2help.DAO.Usuario;
 import com.example.troli.p2help.DAO.UsuarioDAO;
 import com.example.troli.p2help.MainActivity;
 import com.example.troli.p2help.R;
+import com.example.troli.p2help.Util.Constantes;
 import com.example.troli.p2help.Util.Util;
 import com.facebook.stetho.Stetho;
 
@@ -58,10 +59,14 @@ import org.json.JSONObject;
 import com.example.troli.p2help.Util.MySingleton;
 
 
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity  {
 
     private EditText editLogin;
     private EditText editSenha;
@@ -75,6 +80,7 @@ public class LoginActivity extends Activity {
         editSenha = (EditText) findViewById(R.id.editLoginSenha);
 
         Stetho.initializeWithDefaults(this);
+
     }
 
     public void logarUsuario(View v) {
@@ -89,7 +95,10 @@ public class LoginActivity extends Activity {
             exibirMensagem("Usuário ou senha inválidos.");
         } else {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            getTokenAuth();
+            if (Constantes.COMUNICA_API == true) {
+                getTokenAuth();
+            }
+
             startActivity(intent);
 
         }
@@ -103,7 +112,7 @@ public class LoginActivity extends Activity {
     public void getTokenAuth() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.25.12:57598/api/Token";
+        String url = Constantes.API_ADDRESS+"/api/Token";
 
         JSONObject jsonBody = new JSONObject();
         try {

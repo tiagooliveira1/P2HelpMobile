@@ -38,7 +38,7 @@ public class NovoUsuarioActivity extends Activity {
         } else {
             AppDatabase app = AppDatabase.getDatabase(this);
             Usuario usuario = new Usuario();
-            usuario.setLogin(editLogin.getText().toString());
+            usuario.setLogin(editLogin.getText().toString().trim());
             usuario.setNome(editNome.getText().toString());
             usuario.setSenha(editSenha.getText().toString());
 

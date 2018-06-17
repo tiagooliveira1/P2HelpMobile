@@ -16,16 +16,16 @@ import java.util.List;
 public interface OfertaDAO {
 
     @Insert
-    public long inserir(Oferta sistema);
+    public long inserir(Oferta oferta);
 
     @Query("SELECT * from Oferta")
     public List<Oferta> findAll();
 
     @Query("SELECT * FROM Oferta where ID == :id")
-    public Sistema findByID(long id);
+    public Oferta findByID(long id);
 
     @Query("SELECT * FROM Oferta where usuario == :usuario")
-    public Sistema findByUsuario(long usuario);
+    public Oferta findByUsuario(long usuario);
 
     @Delete
     public int excluir(Oferta oferta);

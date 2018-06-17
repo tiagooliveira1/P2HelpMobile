@@ -5,20 +5,30 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class Agenda {
+
     @PrimaryKey(autoGenerate = true)
     private int ID;
-    private String nome;
-    private int tipo_solicitacao;
-    private float valor_hora;
-    private String titulo;
-    private String descricao;
-    private int usuario;
-    private int idcategoria;
+    private int oferta;
+    private String data;
+    private String hora;
     private String status;
-    private int Sistema;
 
     public Agenda() {
 
+    }
+
+    public Agenda(int ID, int oferta, String data, String hora, String status) {
+        this.ID = ID;
+        this.oferta = oferta;
+        this.data = data;
+        this.hora = hora;
+        this.status = status;
+    }
+
+    public Agenda(String data, String hora, String status) {
+        this.data = data;
+        this.hora = hora;
+        this.status = status;
     }
 
     public int getID() {
@@ -29,60 +39,28 @@ public class Agenda {
         this.ID = ID;
     }
 
-    public String getNome() {
-        return nome;
+    public int getOferta() {
+        return oferta;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setOferta(int oferta) {
+        this.oferta = oferta;
     }
 
-    public int getTipo_solicitacao() {
-        return tipo_solicitacao;
+    public String getData() {
+        return data;
     }
 
-    public void setTipo_solicitacao(int tipo_solicitacao) {
-        this.tipo_solicitacao = tipo_solicitacao;
+    public void setData(String data) {
+        this.data = data;
     }
 
-    public float getValor_hora() {
-        return valor_hora;
+    public String getHora() {
+        return hora;
     }
 
-    public void setValor_hora(float valor_hora) {
-        this.valor_hora = valor_hora;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(int usuario) {
-        this.usuario = usuario;
-    }
-
-    public int getIdcategoria() {
-        return idcategoria;
-    }
-
-    public void setIdcategoria(int idcategoria) {
-        this.idcategoria = idcategoria;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public String getStatus() {
@@ -91,13 +69,5 @@ public class Agenda {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getSistema() {
-        return Sistema;
-    }
-
-    public void setSistema(int sistema) {
-        Sistema = sistema;
     }
 }

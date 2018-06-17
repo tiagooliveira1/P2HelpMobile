@@ -32,6 +32,9 @@ public interface SistemaDAO {
     @Query("SELECT * FROM Sistema where ID == :id")
     public Sistema findByID(long id);
 
+    @Query("SELECT * FROM Sistema where nome == :nome")
+    public Sistema findByName(String nome);
+
     @Delete
     public int excluir(Sistema sistema);
 

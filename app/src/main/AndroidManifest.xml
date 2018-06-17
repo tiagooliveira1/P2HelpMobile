@@ -17,11 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.CadastrarSistemaActivity"
@@ -35,7 +31,14 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".Activity.RegistroUsuarioActivity" />
-        <activity android:name=".Activity.NovoUsuarioActivity"></activity>
+        <activity android:name=".Activity.NovoUsuarioActivity" />
+        <activity android:name=".Activity.SplashScreenActivity" android:theme="@style/Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

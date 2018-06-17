@@ -7,6 +7,17 @@
     android:orientation="vertical"
     tools:context="com.example.troli.p2help.Activity.OfertarCursoActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/background"
+        app:title="Nova oferta"
+        >
+    </android.support.v7.widget.Toolbar>
+
     <TextView
         android:id="@+id/txtCadastrarSistema"
         android:layout_width="match_parent"
@@ -26,34 +37,41 @@
 
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Título do anúncio"
+        />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editAnuncioTitulo"
+        android:id="@+id/editOfertaAnuncioTitulo"
         android:hint="Título do seu anúncio"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editAnuncioDescricao"
+        android:id="@+id/editOfertaAnuncioDescricao"
         android:hint="Descreva seu anúncio"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editAnuncioValorHora"
+        android:id="@+id/editOfertaAnuncioValorHora"
         android:hint="Valor por hora"
         android:inputType="numberDecimal"
         />
 
-    <EditText
+    <AutoCompleteTextView
+        android:id="@+id/acSistema"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editNomeSistema"
-        android:hint="Nome do sistema"
-        />
+        android:hint="Digite o nome do sistema"
+        android:completionThreshold="1"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -62,27 +80,36 @@
         android:hint="Versão"
         />
 
-    <TextView
-        android:id="@+id/txtEscolhaSistema"
+    <Button
+        android:id="@+id/btnOfertasPasso2"
+        android:onClick="salvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Escolha o sistema"
+        android:text="Ofertar Minhas Horas"
+        android:background="@drawable/btn_selector"
+
         />
 
-    <AutoCompleteTextView
-        android:id="@+id/acTexto"
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Digite alguma coisa"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
-
+        android:text="Adicionar data"
+        android:onClick="addHorario"/>
 
     <ListView
-        android:id="@+id/listSistemas"
+        android:id="@+id/listHorarios"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
+
+
+
+
+
+
+
+
 
 
 

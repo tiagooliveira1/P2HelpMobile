@@ -2,7 +2,7 @@
     <string name="app_name">P2Help</string>
     <string name="title_activity_cadastrar_sistema">CadastrarSistemaActivity</string>
     <string name="title_activity_listagem">ListagemActivity</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Menu Principal</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
