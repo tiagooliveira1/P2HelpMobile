@@ -22,8 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.troli.p2help.Activity.CadastrarSistemaActivity;
 import com.example.troli.p2help.Activity.ListagemActivity;
 import com.example.troli.p2help.Activity.OfertarCursoActivity;
-//import com.example.troli.p2help.DAO.ConfigGeralDAO;
-//import com.example.troli.p2help.Util.BancoUtil;
+
 import com.example.troli.p2help.DAO.AppDatabase;
 import com.example.troli.p2help.DAO.Categoria;
 import com.example.troli.p2help.Util.Constantes;

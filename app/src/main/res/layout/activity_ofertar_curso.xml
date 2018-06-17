@@ -7,29 +7,28 @@
     android:orientation="vertical"
     tools:context="com.example.troli.p2help.Activity.OfertarCursoActivity">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
         android:background="@color/background"
+        android:minHeight="?attr/actionBarSize"
         app:title="Nova oferta"
-        >
-    </android.support.v7.widget.Toolbar>
+        app:titleTextColor="@android:color/white"></android.support.v7.widget.Toolbar>
+
 
     <TextView
         android:id="@+id/txtCadastrarSistema"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Oferte suas horas disponíveis"
-        />
+        android:text="Oferte suas horas disponíveis" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Informe a categoria de seu anúncio"
-        />
+        android:text="Informe a categoria de seu anúncio" />
+
     <Spinner
         android:id="@+id/spinnerTipoOfertaCurso"
         android:layout_width="match_parent"
@@ -40,79 +39,61 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Título do anúncio"
-        />
+        android:text="Título do anúncio" />
 
     <EditText
+        android:id="@+id/editOfertaAnuncioTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editOfertaAnuncioTitulo"
-        android:hint="Título do seu anúncio"
-        />
+        android:hint="Título do seu anúncio" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/editOfertaAnuncioDescricao"
-        android:hint="Descreva seu anúncio"
-        />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Descreva seu anúncio" />
+
+    <EditText
         android:id="@+id/editOfertaAnuncioValorHora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Valor por hora"
-        android:inputType="numberDecimal"
-        />
+        android:inputType="numberDecimal" />
 
     <AutoCompleteTextView
         android:id="@+id/acSistema"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Digite o nome do sistema"
+        android:layout_centerHorizontal="true"
         android:completionThreshold="1"
-        android:layout_centerHorizontal="true" />
+        android:hint="Digite o nome do sistema" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/editVersaoSistema"
-        android:hint="Versão"
-        />
-
-    <Button
-        android:id="@+id/btnOfertasPasso2"
-        android:onClick="salvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ofertar Minhas Horas"
-        android:background="@drawable/btn_selector"
+        android:hint="Versão" />
 
-        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adicionar data"
-        android:onClick="addHorario"/>
+        android:onClick="addHorario"
+        android:text="Adicionar uma data" />
 
     <ListView
         android:id="@+id/listHorarios"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnOfertasPasso2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_selector"
+        android:onClick="salvar"
+        android:text="Ofertar Minhas Horas"
+
         />
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </LinearLayout>
