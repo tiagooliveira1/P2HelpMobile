@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.troli.p2help.Activity.CadastrarSistemaActivity;
 import com.example.troli.p2help.Activity.ListagemActivity;
+import com.example.troli.p2help.Activity.ListagemOfertasActivity;
 import com.example.troli.p2help.Activity.OfertarCursoActivity;
 
 import com.example.troli.p2help.DAO.AppDatabase;
@@ -81,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void acessarOfertarCurso(View v) {
         Intent intent = new Intent(MainActivity.this,OfertarCursoActivity.class);
+        startActivity(intent);
+    }
+
+    public void acessarListagemCursos(View v) {
+        Intent intent = new Intent(MainActivity.this,ListagemOfertasActivity.class);
         startActivity(intent);
     }
 

@@ -25,6 +25,8 @@ import com.example.troli.p2help.DAO.Categoria;
 import com.example.troli.p2help.DAO.Oferta;
 import com.example.troli.p2help.DAO.Sistema;
 import com.example.troli.p2help.DAO.SistemaDAO;
+import com.example.troli.p2help.DAO.Usuario;
+import com.example.troli.p2help.DAO.UsuarioLogado;
 import com.example.troli.p2help.MainActivity;
 import com.example.troli.p2help.R;
 
@@ -161,6 +163,7 @@ public class OfertarCursoActivity extends AppCompatActivity implements
 
     public void salvar(View v) {
         AppDatabase app = AppDatabase.getDatabase(this);
+        UsuarioLogado usuarioLogado = UsuarioLogado.getInstance();
 
         if (!validarCampos()) {
             return;
@@ -183,6 +186,8 @@ public class OfertarCursoActivity extends AppCompatActivity implements
         oferta.setValor_hora(Float.parseFloat(editValorHora.getText().toString()));
         oferta.setStatus("P");
         oferta.setSistema(sistema.getID());
+
+        oferta.setUsuario(usuarioLogado.getID());
 
         long resultado = app.ofertaDAO().inserir(oferta);
         // se salvou a oferta com sucesso, então insere na agenda

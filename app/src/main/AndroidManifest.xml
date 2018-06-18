@@ -16,9 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.LoginActivity">
-
-        </activity>
+        <activity android:name=".Activity.LoginActivity" />
         <activity
             android:name=".Activity.CadastrarSistemaActivity"
             android:label="@string/title_activity_cadastrar_sistema" />
@@ -32,13 +30,17 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".Activity.RegistroUsuarioActivity" />
         <activity android:name=".Activity.NovoUsuarioActivity" />
-        <activity android:name=".Activity.SplashScreenActivity" android:theme="@style/Splash">
+        <activity
+            android:name=".Activity.SplashScreenActivity"
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.ContratacaoActivity" />
+        <activity android:name=".Activity.ListagemOfertasActivity"></activity>
     </application>
 
 </manifest>

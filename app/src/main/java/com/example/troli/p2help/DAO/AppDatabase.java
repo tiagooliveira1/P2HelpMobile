@@ -14,8 +14,10 @@ import android.content.Context;
         Categoria.class,
         SistemaVersao.class,
         Oferta.class,
-        Agenda.class
-}, version =19 )
+        Agenda.class,
+        Contratacao.class
+
+}, version =20 )
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract SistemaDAO sistemaDAO();
@@ -23,6 +25,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CategoriaDAO categoriaDAO();
     public abstract OfertaDAO ofertaDAO();
     public abstract AgendaDAO agendaDAO();
+    public abstract ContratacaoDAO contratacaoDAO();
 
     private static AppDatabase INSTANCE;
 

@@ -47,6 +47,7 @@ import com.example.troli.p2help.DAO.AppDatabase;
 import com.example.troli.p2help.DAO.Sistema;
 import com.example.troli.p2help.DAO.Usuario;
 import com.example.troli.p2help.DAO.UsuarioDAO;
+import com.example.troli.p2help.DAO.UsuarioLogado;
 import com.example.troli.p2help.MainActivity;
 import com.example.troli.p2help.R;
 import com.example.troli.p2help.Util.Constantes;
@@ -94,13 +95,16 @@ public class LoginActivity extends AppCompatActivity  {
         if (usuario == null) {
             exibirMensagem("Usuário ou senha inválidos.");
         } else {
+            UsuarioLogado usuarioLogado = UsuarioLogado.getInstance();
+            usuarioLogado.setID(usuario.getID());
+            usuarioLogado.setNome(usuario.getNome());
+
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             if (Constantes.COMUNICA_API == true) {
                 getTokenAuth();
             }
 
             startActivity(intent);
-
         }
 
     }
