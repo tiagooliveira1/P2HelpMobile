@@ -65,7 +65,6 @@ public class OfertarCursoActivity extends AppCompatActivity implements
     private int year, month, day, hour, minute;
 
 
-
     Bundle bundle;
 
 
@@ -136,7 +135,7 @@ public class OfertarCursoActivity extends AppCompatActivity implements
         });
 
         // se estiver editando, então preenche a tela
-        if(getIntent().hasExtra("ID_OFERTA_EDIT")) {
+        if (getIntent().hasExtra("ID_OFERTA_EDIT")) {
             toolbar.setTitle("Editar Oferta");
 
 
@@ -150,7 +149,6 @@ public class OfertarCursoActivity extends AppCompatActivity implements
         } else {
             toolbar.setTitle("Nova Oferta");
         }
-
     }
 
     public void addHorario(View v) {
@@ -158,7 +156,7 @@ public class OfertarCursoActivity extends AppCompatActivity implements
         //listaHorarios.add(new Agenda("15/12/2018", "13:00", "A"));
         //myAdapter.notifyDataSetChanged();
     }
-    
+
 
     private ArrayList<Sistema> getListaSistemas() {
 
@@ -194,11 +192,17 @@ public class OfertarCursoActivity extends AppCompatActivity implements
             sistema = new Sistema();
             sistema.setNome(autoCompleteSistema.getText().toString());
             long idSistema = app.sistemaDAO().inserir(sistema);
-            sistema.setID((int)idSistema);
+            sistema.setID((int) idSistema);
         }
 
+        Oferta oferta;
+        // se estiver editando, entao busca o bendito
+        if (getIntent().hasExtra("ID_OFERTA_EDIT")) {
+            oferta = app.ofertaDAO().findByID(bundle.getInt("ID_OFERTA_EDIT"));
+        } else {
+            oferta = new Oferta();
+        }
 
-        Oferta oferta = new Oferta();
 
         oferta.setIdcategoria(1);
         oferta.setDescricao(editDescricao.getText().toString());
@@ -209,21 +213,48 @@ public class OfertarCursoActivity extends AppCompatActivity implements
 
         oferta.setUsuario(usuarioLogado.getID());
 
-        long idOferta = app.ofertaDAO().inserir(oferta);
-        // se salvou a oferta com sucesso, então insere na agenda
-        if (idOferta > 0) {
-            // varre o array de agendas e coloca o código da oferta
-            for (Agenda a : listaHorarios) {
-                a.setOferta((int)idOferta);
-                app.agendaDAO().inserir(a);
+
+        // se estiber editando
+        if (getIntent().hasExtra("ID_OFERTA_EDIT")) {
+            long idOferta = app.ofertaDAO().editar(oferta);
+
+            if(idOferta > 0 ){
+                // apaga toda a agenda desta oferta, para inserir novamente
+                app.agendaDAO().deleteByOfertaID(oferta.getID());
+                // varre o array de agendas e coloca o código da oferta
+                for (Agenda a : listaHorarios) {
+                    a.setOferta(oferta.getID());
+                    app.agendaDAO().inserir(a);
+                }
+
+                Toast.makeText(this, "Oferta atualizada com sucesso!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(OfertarCursoActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Problemas ao atualizar oferta!", Toast.LENGTH_SHORT).show();
             }
 
-            Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+        } else { // se estiver inserindo
+            long idOferta = app.ofertaDAO().inserir(oferta);
+            // se salvou a oferta com sucesso, então insere na agenda
+            if (idOferta > 0) {
+                // varre o array de agendas e coloca o código da oferta
+                for (Agenda a : listaHorarios) {
+                    a.setOferta((int) idOferta);
+                    app.agendaDAO().inserir(a);
+                }
+                Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(OfertarCursoActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Erro ao cadastrar oferta!", Toast.LENGTH_SHORT).show();
+            }
+
             Intent intent = new Intent(OfertarCursoActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-        } else {
-            Toast.makeText(this, "Erro ao cadastrar oferta!", Toast.LENGTH_SHORT).show();
         }
 
     }

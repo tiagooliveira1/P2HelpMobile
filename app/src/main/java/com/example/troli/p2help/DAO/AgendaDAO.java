@@ -33,4 +33,7 @@ public interface AgendaDAO {
     @Update
     public int editar(Agenda agenda);
 
+    @Query("DELETE FROM Agenda where oferta == :idoferta")
+    public int deleteByOfertaID(long idoferta);
+
 }
