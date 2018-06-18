@@ -41,9 +41,9 @@ public class ListagemOfertasActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Oferta oferta = (Oferta)parent.getItemAtPosition(position);
-                Intent atualizarIntent = new Intent(ListagemOfertasActivity.this,AtualizarSistemaActivity.class);
-                atualizarIntent.putExtra("ID_OFERTA",oferta.getID());
-                startActivity(atualizarIntent);
+                Intent detalheIntent = new Intent(ListagemOfertasActivity.this,OfertaDetalheActivity.class);
+                detalheIntent.putExtra("ID_OFERTA",oferta.getID());
+                startActivity(detalheIntent);
             }
         });
     }

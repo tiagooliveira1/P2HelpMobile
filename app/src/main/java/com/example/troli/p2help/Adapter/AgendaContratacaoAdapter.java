@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.troli.p2help.DAO.Agenda;
-import com.example.troli.p2help.DAO.Sistema;
 import com.example.troli.p2help.R;
 
 import java.util.List;
@@ -17,13 +16,13 @@ import java.util.List;
 //import android.support.annotation.NonNull;
 
 
-public class AgendaAdapter extends ArrayAdapter<Agenda> {
+public class AgendaContratacaoAdapter extends ArrayAdapter<Agenda> {
 
     private int resource;
     private List<Agenda> agendas;
 
 
-    public AgendaAdapter(Context context, int resource, List<Agenda> objects) {
+    public AgendaContratacaoAdapter(Context context, int resource, List<Agenda> objects) {
         super(context, resource, objects);
         this.resource = resource;
         agendas = objects;
@@ -40,8 +39,9 @@ public class AgendaAdapter extends ArrayAdapter<Agenda> {
 
         Agenda agenda = agendas.get(position);
 
-        TextView textData = (TextView) mView.findViewById(R.id.textAgendaData);
-        TextView textHora = (TextView) mView.findViewById(R.id.textAgendaHora);
+
+        TextView textData = (TextView) mView.findViewById(R.id.txtContratacaoAgendaData);
+        TextView textHora = (TextView) mView.findViewById(R.id.txtContratacaoAgendaHora);
 
         if(textData != null){
             textData.setText(agenda.getData());

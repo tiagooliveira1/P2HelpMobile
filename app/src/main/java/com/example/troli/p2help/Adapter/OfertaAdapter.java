@@ -7,8 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.troli.p2help.Activity.OfertarCursoActivity;
+import com.example.troli.p2help.DAO.AppDatabase;
 import com.example.troli.p2help.DAO.Oferta;
 import com.example.troli.p2help.DAO.Sistema;
+import com.example.troli.p2help.DAO.Usuario;
 import com.example.troli.p2help.R;
 
 import java.util.List;
@@ -38,6 +41,10 @@ public class OfertaAdapter extends ArrayAdapter<Oferta> {
         }
 
         Oferta oferta = ofertas.get(position);
+        AppDatabase app = AppDatabase.getDatabase(getContext());
+
+        Usuario usuario = app.usuarioDAO().findByID(oferta.getUsuario());
+        Sistema sistema = app.sistemaDAO().findByID(oferta.getSistema());
 
         TextView textID = (TextView) mView.findViewById(R.id.textID);
         TextView textTitulo = (TextView) mView.findViewById(R.id.txtListaOfertaTitulo);
@@ -48,14 +55,15 @@ public class OfertaAdapter extends ArrayAdapter<Oferta> {
         if(textID != null){
             textID.setText(String.valueOf(oferta.getID()));
         }
+        // imprime o titulo da oferta junto com o nome do sistema
         if(textTitulo != null){
-            textTitulo.setText(oferta.getTitulo());
+            textTitulo.setText(sistema.getNome() + " - " + oferta.getTitulo());
         }
         if(textDescricao != null){
             textDescricao.setText(oferta.getDescricao());
         }
         if(textUsuario != null){
-            textUsuario.setText("Usuário:"+String.valueOf(oferta.getUsuario()));
+            textUsuario.setText("Usuário: "+usuario.getNome());
         }
         if(textValorHora != null){
             textValorHora.setText("Valor da Hora: R$ "+String.valueOf(oferta.getValor_hora()));

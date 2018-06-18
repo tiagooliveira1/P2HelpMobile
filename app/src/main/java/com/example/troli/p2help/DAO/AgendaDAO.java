@@ -21,6 +21,9 @@ public interface AgendaDAO {
     @Query("SELECT * from Agenda")
     public List<Agenda> findAll();
 
+    @Query("SELECT * from Agenda where oferta = :idoferta")
+    public List<Agenda> findByOfertaID(long idoferta);
+
     @Query("SELECT * FROM Agenda where ID == :id")
     public Agenda findByID(long id);
 

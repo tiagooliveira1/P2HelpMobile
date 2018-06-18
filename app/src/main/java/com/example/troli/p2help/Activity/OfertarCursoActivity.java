@@ -174,7 +174,8 @@ public class OfertarCursoActivity extends AppCompatActivity implements
             // se sistema não existir, então insere
             sistema = new Sistema();
             sistema.setNome(autoCompleteSistema.getText().toString());
-            app.sistemaDAO().inserir(sistema);
+            long idSistema = app.sistemaDAO().inserir(sistema);
+            sistema.setID((int)idSistema);
         }
 
 
@@ -189,12 +190,12 @@ public class OfertarCursoActivity extends AppCompatActivity implements
 
         oferta.setUsuario(usuarioLogado.getID());
 
-        long resultado = app.ofertaDAO().inserir(oferta);
+        long idOferta = app.ofertaDAO().inserir(oferta);
         // se salvou a oferta com sucesso, então insere na agenda
-        if (resultado > 0) {
+        if (idOferta > 0) {
             // varre o array de agendas e coloca o código da oferta
             for (Agenda a : listaHorarios) {
-                a.setOferta(oferta.getID());
+                a.setOferta((int)idOferta);
                 app.agendaDAO().inserir(a);
             }
 

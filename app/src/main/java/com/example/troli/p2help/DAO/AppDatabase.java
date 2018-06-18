@@ -17,7 +17,7 @@ import android.content.Context;
         Agenda.class,
         Contratacao.class
 
-}, version =20 )
+}, version =22 )
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract SistemaDAO sistemaDAO();

@@ -40,7 +40,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.ContratacaoActivity" />
-        <activity android:name=".Activity.ListagemOfertasActivity"></activity>
+        <activity android:name=".Activity.ListagemOfertasActivity" />
+        <activity android:name=".Activity.OfertaDetalheActivity"></activity>
     </application>
 
 </manifest>

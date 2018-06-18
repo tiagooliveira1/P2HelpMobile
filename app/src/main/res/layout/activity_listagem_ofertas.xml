@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="com.example.troli.p2help.Activity.ListagemOfertasActivity">
-
-<ListView
-    android:id="@+id/listaOfertas"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    />
+    android:orientation="vertical"
+    tools:context="com.example.troli.p2help.Activity.ListagemOfertasActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:minHeight="?attr/actionBarSize"
+        app:title="Ofertas disponíveis"
+        app:titleTextColor="@android:color/white"></android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/listaOfertas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
