@@ -41,7 +41,8 @@
         </activity>
         <activity android:name=".Activity.ContratacaoActivity" />
         <activity android:name=".Activity.ListagemOfertasActivity" />
-        <activity android:name=".Activity.OfertaDetalheActivity"></activity>
+        <activity android:name=".Activity.OfertaDetalheActivity" />
+        <activity android:name=".Activity.MinhasOfertasActivity" />
     </application>
 
 </manifest>

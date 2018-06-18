@@ -10,43 +10,54 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="@color/background">
-    </android.support.v7.widget.Toolbar>
+        android:background="@color/background"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/white"></android.support.v7.widget.Toolbar>
 
     <Button
         android:id="@+id/btnAcessaCadastrarSistema"
-        android:onClick="cadastrarSistema"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cadastrar sistema"
-        />
+        android:onClick="acessarActivity"
+        android:text="Cadastrar sistema" />
+
     <Button
         android:id="@+id/btnAcessaListagemSistema"
-        android:onClick="acessaListagemSistemas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Listagem de sistemas"
-        />
+        android:onClick="acessarActivity"
+        android:text="Listagem de sistemas" />
 
     <Button
         android:id="@+id/btnEncontrarPrestador"
-        android:onClick="acessarListagemCursos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Encontrar Prestador"
-        />
+        android:onClick="acessarActivity"
+        android:text="Encontrar Prestador" />
+
+    <Button
+        android:id="@+id/btnMinhasOfertas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="acessarActivity"
+        android:text="Minhas Ofertas" />
+
+    <Button
+        android:id="@+id/btnMinhasContratacoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="acessarActivity"
+        android:text="Minhas Contratações" />
 
     <Button
         android:id="@+id/btnOfertarHoras"
-        android:onClick="acessarOfertarCurso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ofertar Minhas Horas"
         android:background="@drawable/btn_selector"
+        android:onClick="acessarActivity"
+        android:text="Ofertar Minhas Horas"
 
         />
 

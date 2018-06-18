@@ -25,7 +25,7 @@ public interface OfertaDAO {
     public Oferta findByID(long id);
 
     @Query("SELECT * FROM Oferta where usuario == :usuario")
-    public Oferta findByUsuario(long usuario);
+    public List<Oferta> findByUsuario(long usuario);
 
     @Delete
     public int excluir(Oferta oferta);

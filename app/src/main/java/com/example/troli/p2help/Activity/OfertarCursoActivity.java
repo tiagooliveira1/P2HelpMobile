@@ -45,7 +45,7 @@ public class OfertarCursoActivity extends AppCompatActivity implements
         TimePickerDialog.OnTimeSetListener,
         DialogInterface.OnCancelListener {
 
-    //private String[] listaSistemas = new String[4];
+    AppDatabase app = AppDatabase.getDatabase(this);
 
     private Spinner spinnerTipoOferta;
     private AutoCompleteTextView autoCompleteSistema;
@@ -65,12 +65,19 @@ public class OfertarCursoActivity extends AppCompatActivity implements
     private int year, month, day, hour, minute;
 
 
+
+    Bundle bundle;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ofertar_curso);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(android.R.drawable.ic_menu_my_calendar);
+
+        bundle = getIntent().getExtras();
+        Oferta ofertaEdit;
 
         editValorHora = (TextView) findViewById(R.id.editOfertaAnuncioValorHora);
         editTitulo = (TextView) findViewById(R.id.editOfertaAnuncioTitulo);
@@ -128,6 +135,21 @@ public class OfertarCursoActivity extends AppCompatActivity implements
             }
         });
 
+        // se estiver editando, então preenche a tela
+        if(getIntent().hasExtra("ID_OFERTA_EDIT")) {
+            toolbar.setTitle("Editar Oferta");
+
+
+            ofertaEdit = app.ofertaDAO().findByID(bundle.getInt("ID_OFERTA_EDIT"));
+            Sistema sistema = app.sistemaDAO().findByID(ofertaEdit.getSistema());
+            editTitulo.setText(ofertaEdit.getTitulo());
+            editDescricao.setText(ofertaEdit.getDescricao());
+            editValorHora.setText(String.valueOf(ofertaEdit.getValor_hora()));
+            autoCompleteSistema.setText(sistema.getNome());
+
+        } else {
+            toolbar.setTitle("Nova Oferta");
+        }
 
     }
 
@@ -136,10 +158,7 @@ public class OfertarCursoActivity extends AppCompatActivity implements
         //listaHorarios.add(new Agenda("15/12/2018", "13:00", "A"));
         //myAdapter.notifyDataSetChanged();
     }
-
-    private static final String[] COUNTRIES = new String[]{
-            "Belgium", "France", "Italy", "Germany", "Spain"
-    };
+    
 
     private ArrayList<Sistema> getListaSistemas() {
 

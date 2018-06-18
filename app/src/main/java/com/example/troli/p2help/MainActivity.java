@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.troli.p2help.Activity.CadastrarSistemaActivity;
 import com.example.troli.p2help.Activity.ListagemActivity;
 import com.example.troli.p2help.Activity.ListagemOfertasActivity;
+import com.example.troli.p2help.Activity.MinhasOfertasActivity;
 import com.example.troli.p2help.Activity.OfertarCursoActivity;
 
 import com.example.troli.p2help.DAO.AppDatabase;
@@ -70,15 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void cadastrarSistema(View v){
-        Intent intent = new Intent(MainActivity.this,CadastrarSistemaActivity.class);
-        startActivity(intent);
-    }
 
-    public void acessaListagemSistemas(View v){
-        Intent intent = new Intent(MainActivity.this,ListagemActivity.class);
-        startActivity(intent);
-    }
+
+
 
     public void acessarOfertarCurso(View v) {
         Intent intent = new Intent(MainActivity.this,OfertarCursoActivity.class);
@@ -90,6 +85,37 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void acessarActivity(View v) {
+        Intent intent;
+        switch(v.getId()) {
+            case R.id.btnMinhasContratacoes :
+                intent = new Intent(MainActivity.this,ListagemOfertasActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnEncontrarPrestador :
+                intent = new Intent(MainActivity.this,ListagemOfertasActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnOfertarHoras :
+                intent = new Intent(MainActivity.this,OfertarCursoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnAcessaCadastrarSistema :
+                intent = new Intent(MainActivity.this,CadastrarSistemaActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnAcessaListagemSistema :
+                intent = new Intent(MainActivity.this,ListagemActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnMinhasOfertas :
+                intent = new Intent(MainActivity.this,MinhasOfertasActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                exibirMensagem("Problemas com configuracao da tela. Olhar método acessarActivity");
+        }
+    }
     public void getCategoriasAPI() {
 
 
@@ -185,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
 
 
     private void exibirMensagem(String mensagem) {
