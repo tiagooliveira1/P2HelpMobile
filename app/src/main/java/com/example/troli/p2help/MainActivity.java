@@ -1,6 +1,5 @@
 package com.example.troli.p2help;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -17,18 +16,17 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.troli.p2help.Activity.CadastrarSistemaActivity;
 import com.example.troli.p2help.Activity.ListagemActivity;
 import com.example.troli.p2help.Activity.ListagemOfertasActivity;
 import com.example.troli.p2help.Activity.MinhasOfertasActivity;
+import com.example.troli.p2help.Activity.NovoUsuarioActivity;
 import com.example.troli.p2help.Activity.OfertarCursoActivity;
 
 import com.example.troli.p2help.DAO.AppDatabase;
 import com.example.troli.p2help.DAO.Categoria;
 import com.example.troli.p2help.Util.Constantes;
-import com.facebook.stetho.Stetho;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +36,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -110,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnMinhasOfertas :
                 intent = new Intent(MainActivity.this,MinhasOfertasActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnMeusDados :
+                intent = new Intent(MainActivity.this,NovoUsuarioActivity.class);
                 startActivity(intent);
                 break;
             default:

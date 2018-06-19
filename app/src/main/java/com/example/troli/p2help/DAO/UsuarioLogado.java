@@ -12,7 +12,7 @@ public class UsuarioLogado {
     private int ID;
 
     public UsuarioLogado() {
-
+        this.ID = -1;
     }
 
     public UsuarioLogado(int ID, String nome ) {
