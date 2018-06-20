@@ -1,9 +1,12 @@
 package com.example.troli.p2help.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -12,6 +15,7 @@ import com.example.troli.p2help.Adapter.MinhaOfertaAdapter;
 import com.example.troli.p2help.DAO.AppDatabase;
 import com.example.troli.p2help.DAO.Oferta;
 import com.example.troli.p2help.DAO.UsuarioLogado;
+import com.example.troli.p2help.MainActivity;
 import com.example.troli.p2help.R;
 
 import java.util.ArrayList;
@@ -54,8 +58,52 @@ public class MinhasOfertasActivity extends AppCompatActivity {
 
     public void onCreateContextMenu(ContextMenu contextMenu, View view,
                                     ContextMenu.ContextMenuInfo contextMenuInfo) {
-        Toast.makeText(MinhasOfertasActivity.this, "implementar o menu de contexto para excluir", Toast.LENGTH_SHORT).show();
-        //contextMenu.add(Menu.NONE, 1, Menu.NONE, "deletar");
+        super.onCreateContextMenu(contextMenu, view, contextMenuInfo);
+        getMenuInflater().inflate(
+                R.menu.menu_contexto_oferta, contextMenu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+
+        final Oferta oferta = (Oferta) listViewMinhasOfertas.getItemAtPosition(info.position);
+
+        switch (item.getItemId()) {
+            case R.id.opcao1:
+                Intent detalheIntent = new Intent(MinhasOfertasActivity.this,OfertarCursoActivity.class);
+                detalheIntent.putExtra("ID_OFERTA_EDIT",oferta.getID());
+                startActivity(detalheIntent);
+                return true;
+            case R.id.opcao2:
+                AlertDialog.Builder alert = new AlertDialog.Builder(MinhasOfertasActivity.this);
+                alert.setTitle("Exclusão");
+                alert.setMessage("Você tem certeza que deseja excluir a oferta?");
+                alert.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AppDatabase app = AppDatabase.getDatabase(MinhasOfertasActivity.this);
+                        app.ofertaDAO().excluir(oferta);
+                        Toast.makeText(MinhasOfertasActivity.this, "Oferta excluída com sucesso.",
+                                Toast.LENGTH_SHORT).show();
+                        Intent principal = new Intent(MinhasOfertasActivity.this,MainActivity.class);
+                        startActivity(principal);
+                    }
+                });
+                alert.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
+                //return true;
+
+        }
+        return super.onContextItemSelected(item);
     }
 
 }
