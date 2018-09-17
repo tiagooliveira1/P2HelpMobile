@@ -68,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
     public void acessarOfertarCurso(View v) {
         Intent intent = new Intent(MainActivity.this,OfertarCursoActivity.class);
         startActivity(intent);

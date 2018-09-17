@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,6 +59,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.troli.p2help.Util.MySingleton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 import android.support.v7.app.AppCompatActivity;
@@ -72,6 +77,7 @@ public class LoginActivity extends AppCompatActivity  {
     private EditText editLogin;
     private EditText editSenha;
 
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +86,15 @@ public class LoginActivity extends AppCompatActivity  {
         editLogin = (EditText) findViewById(R.id.editLoginUsuario);
         editSenha = (EditText) findViewById(R.id.editLoginSenha);
 
+        mAuth = FirebaseAuth.getInstance();
+
         Stetho.initializeWithDefaults(this);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            Toast.makeText(this, extras.getString("mensagem_alerta").toString(), Toast.LENGTH_SHORT).show();
+            editLogin.setText(extras.getString("email_cadastrado").toString());
+        }
 
     }
 
@@ -88,7 +102,20 @@ public class LoginActivity extends AppCompatActivity  {
         String login = editLogin.getText().toString();
         String senha = editSenha.getText().toString();
 
-        AppDatabase app = AppDatabase.getDatabase(this);
+        mAuth.signInWithEmailAndPassword(login, senha).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Intent mainActivity = new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(mainActivity);
+                } else {
+                    Log.e("", "onComplete: Failed=" + task.getException().getMessage());
+                    Toast.makeText(LoginActivity.this, "Erro ao logar."+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        /*AppDatabase app = AppDatabase.getDatabase(this);
         Usuario usuario;
         usuario = app.usuarioDAO().findByLoginAndPassword(login.trim(), senha);
 
@@ -105,7 +132,7 @@ public class LoginActivity extends AppCompatActivity  {
             }
 
             startActivity(intent);
-        }
+        }*/
 
     }
 
